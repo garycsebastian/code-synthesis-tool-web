@@ -1,0 +1,30 @@
+<div class="task-list-container">
+  <h2>Task List</h2>
+
+  <button routerLink="/create-task">Create Task</button>
+  <div *ngIf="loading" class="loading-indicator">
+    Loading tasks...
+  </div>
+
+  <div *ngIf="loading" class="loading-indicator">
+    Loading tasks...
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="!loading && !errorMessage && tasks.length === 0" class="no-tasks-message">
+    No tasks found.
+  </div>
+
+  <ul *ngIf="!loading && !errorMessage && tasks.length > 0">
+    <li *ngFor="let task of tasks" class="task-item">
+      <h3>{{ task.title }}</h3>
+      <p>{{ task.description }}</p>
+      <p>Due Date: {{ task.dueDate | date }}</p>
+      <p>Status: {{ task.status }}</p>
+      <!-- Add buttons for Edit, Delete, etc. if needed -->
+    </li>
+  </ul>
+</div>

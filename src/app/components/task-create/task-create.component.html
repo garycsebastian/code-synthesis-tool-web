@@ -1,0 +1,26 @@
+<div class="task-create-container">
+  <h2>Create New Task</h2>
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" [(ngModel)]="newTask.title" required>
+    </div>
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea id="description" name="description" [(ngModel)]="newTask.description"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="dueDate">Due Date:</label>
+      <input type="date" id="dueDate" name="dueDate" [(ngModel)]="newTask.dueDate" required>
+    </div>
+    <div class="form-group">
+      <label for="status">Status:</label>
+      <select id="status" name="status" [(ngModel)]="newTask.status">
+        <option value="PENDING">PENDING</option>
+        <option value="IN_PROGRESS">IN_PROGRESS</option>
+        <option value="COMPLETED">COMPLETED</option>
+      </select>
+    </div>
+    <button type="submit">Create</button>
+  </form>
+</div>
