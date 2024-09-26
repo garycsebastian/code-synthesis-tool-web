@@ -18,8 +18,10 @@ export class AuthInterceptorService implements HttpInterceptor {
 
   constructor(private authService: AuthService, private cookieService: CookieService) {}
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    console.log("intercept enter");
     const accessToken = this.cookieService.get('accessToken'); // Get access token from cookie
-    if (accessToken) {
+    if (accessToken && !this.isRefreshing) {
+      console.log("access token is not null");
       request = this.addToken(request, accessToken);
     }
     return next.handle(request).pipe(

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'; // For navigation after login
+import {Router, RouterLink} from '@angular/router'; // For navigation after login
 import { AuthService } from '../../services/auth.service';
 import { LoginRequest } from '../../models/login-request';
 import {FormsModule} from "@angular/forms";
@@ -12,7 +12,8 @@ import {CookieService} from 'ngx-cookie-service';
   standalone: true,
   imports: [
     FormsModule,
-    NgIf
+    NgIf,
+    RouterLink
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'] // Notice styleUrls (plural)
@@ -49,5 +50,11 @@ export class LoginComponent implements OnInit {
           this.isLoading = false; // Hide loading indicator on completion
         }
       });
+  }
+
+  isValidEmail(email: string): boolean {
+    // You can use a simple regex or a dedicated email validation library
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
   }
 }
